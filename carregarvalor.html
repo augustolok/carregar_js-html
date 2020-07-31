@@ -1,0 +1,361 @@
+
+		<!--Titulo do Formulário-->
+		<h1>Importar dados do arquivo TXT</h1>
+		<style>
+		@import url(https://fonts.googleapis.com/css?family=Expletus+Sans);
+
+/* Basic resets */
+
+
+
+/* Styling an indeterminate progress bar */
+
+progress:not(value) {
+	/* Add your styles here. As part of this walkthrough we will focus only on determinate progress bars. */
+}
+
+/* Styling the determinate progress element */
+
+progress[value] {
+	/* Get rid of the default appearance */
+	appearance: none;
+	
+	/* This unfortunately leaves a trail of border behind in Firefox and Opera. We can remove that by setting the border to none. */
+	border: none;
+	
+	/* Add dimensions */
+	width: 100%; height: 20px;
+	
+	/* Although firefox doesn't provide any additional pseudo class to style the progress element container, any style applied here works on the container. */
+	  background-color: whiteSmoke;
+	  border-radius: 3px;
+	  box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+	
+	/* Of all IE, only IE10 supports progress element that too partially. It only allows to change the background-color of the progress value using the 'color' attribute. */
+	color: royalblue;
+	
+	position: relative;
+	margin: 0 0 1.5em; 
+}
+
+/*
+Webkit browsers provide two pseudo classes that can be use to style HTML5 progress element.
+-webkit-progress-bar -> To style the progress element container
+-webkit-progress-value -> To style the progress element value.
+*/
+
+progress[value]::-webkit-progress-bar {
+	background-color: whiteSmoke;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+}
+
+progress[value]::-webkit-progress-value {
+	position: relative;
+	
+	background-size: 35px 20px, 100% 100%, 100% 100%;
+	border-radius:3px;
+	
+	/* Let's animate this */
+	animation: animate-stripes 5s linear infinite;
+}
+
+@keyframes animate-stripes { 100% { background-position: -100px 0; } }
+
+/* Let's spice up things little bit by using pseudo elements. */
+
+progress[value]::-webkit-progress-value:after {
+	/* Only webkit/blink browsers understand pseudo elements on pseudo classes. A rare phenomenon! */
+	content: '';
+	position: absolute;
+	
+	width:5px; height:5px;
+	top:7px; right:7px;
+	
+	background-color: white;
+	border-radius: 100%;
+}
+
+/* Firefox provides a single pseudo class to style the progress element value and not for container. -moz-progress-bar */
+
+progress[value]::-moz-progress-bar {
+	/* Gradient background with Stripes */
+	background-image:
+	-moz-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -moz-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -moz-linear-gradient( left, #09c, #f44);
+	
+	background-size: 35px 20px, 100% 100%, 100% 100%;
+	border-radius:3px;
+	
+	/* Firefox doesn't support CSS3 keyframe animations on progress element. Hence, we did not include animate-stripes in this code block */
+}
+
+/* Fallback technique styles */
+.progress-bar {
+	background-color: whiteSmoke;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+
+	/* Dimensions should be similar to the parent progress element. */
+	width: 100%; height:20px;
+}
+
+.progress-bar span {
+	background-color: royalblue;
+	border-radius: 3px;
+	
+	display: block;
+	text-indent: -9999px;
+}
+
+p[data-value] { 
+  
+  position: relative; 
+}
+
+/* The percentage will automatically fall in place as soon as we make the width fluid. Now making widths fluid. */
+
+p[data-value]:after {
+	content: attr(data-value) '%';
+	position: absolute; right:0;
+}
+
+
+
+
+
+.html5::-webkit-progress-value,
+.python::-webkit-progress-value  {
+	/* Gradient background with Stripes */
+	background-image:
+	-webkit-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -webkit-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -webkit-linear-gradient( left, #09c, #f44);
+}
+
+.css3::-webkit-progress-value,
+.php::-webkit-progress-value 
+{
+	/* Gradient background with Stripes */
+	background-image:
+	-webkit-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -webkit-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -webkit-linear-gradient( left, #09c, #ff0);
+}
+
+.jquery::-webkit-progress-value,
+.node-js::-webkit-progress-value 
+{
+	/* Gradient background with Stripes */
+	background-image:
+	-webkit-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -webkit-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -webkit-linear-gradient( left, #09c, #690);
+}
+
+/* Similarly, for Mozillaa. Unfortunately combining the styles for different browsers will break every other browser. Hence, we need a separate block. */
+
+.html5::-moz-progress-bar,
+.php::-moz-progress-bar {
+	/* Gradient background with Stripes */
+	background-image:
+	-moz-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -moz-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -moz-linear-gradient( left, #09c, #f44);
+}
+
+.css3::-moz-progress-bar,
+.php::-moz-progress-bar {
+{
+	/* Gradient background with Stripes */
+	background-image:
+	-moz-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -moz-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -moz-linear-gradient( left, #09c, #ff0);
+}
+
+.jquery::-moz-progress-bar,
+.node-js::-moz-progress-bar {
+	/* Gradient background with Stripes */
+	background-image:
+	-moz-linear-gradient( 135deg,
+													 transparent,
+													 transparent 33%,
+													 rgba(0,0,0,.1) 33%,
+													 rgba(0,0,0,.1) 66%,
+													 transparent 66%),
+    -moz-linear-gradient( top,
+														rgba(255, 255, 255, .25),
+														rgba(0,0,0,.2)),
+     -moz-linear-gradient( left, #09c, #690);
+}
+
+/* Now we are good to duplicate html code for other skills and then add the css code for the new skill based on data-skill */
+
+  
+/* THE END */
+		</style>
+		<script>
+		function CriaRequest() {
+									try{
+										request = new XMLHttpRequest();
+									}catch (IEAtual){
+
+										try{
+											request = new ActiveXObject("Msxml2.XMLHTTP");
+										}catch(IEAntigo){
+
+											try{
+												request = new ActiveXObject("Microsoft.XMLHTTP");
+											}catch(falha){
+												request = false;
+											}
+										}
+									}
+
+									if (!request)
+										alert("Seu Navegador não suporta Ajax!");
+									else
+										return request;
+								}
+		function enviarform(cnpj , ie, situacao,uf,estado) {
+
+								// Declaração de Variáveis
+								let result = document.getElementById("resultado");
+								let xmlreq = CriaRequest();
+
+								let form = document.getElementById('myform');
+								let formData = new FormData();
+								formData.append('cnpj', cnpj);
+
+								// Exibi a imagem de progresso
+								result.innerHTML = '<h4 >Calculado o tamanho do registro, aguarde</h4>';
+
+								// Iniciar uma requisição
+								xmlreq.open("POST", "http://localhost/empresas/cciupdate", false);
+
+								// Atribui uma função para ser executada sempre que houver uma mudança de ado
+								
+
+								xmlreq.send(formData);
+									// Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+									if (xmlreq.readyState == 4) {
+
+										// Verifica se o arquivo foi encontrado com sucesso
+										if (xmlreq.status == 200) {
+											result.innerHTML = xmlreq.responseText;
+										}else{
+											result.innerHTML = "Erro: " + xmlreq.statusText;
+										}
+									}
+								};
+								
+							
+							function init(){
+  document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+}
+
+function handleFileSelect(event){
+  const reader = new FileReader()
+  reader.onload = handleFileLoad;
+  reader.readAsText(event.target.files[0]);
+}
+
+function handleFileLoad(event){
+  
+									let space = event.target.result;
+									var re = "\n";
+									var nameList = space.split(re);
+									let  total = nameList.length;
+									//console.log(nameList[0]);
+									let oneporcent = 100/total;
+									let  contador =0;
+									let porcentagem = oneporcent ;
+									nameList.forEach(function(entry) {
+										
+									
+										setTimeout(function(){
+											console.log(contador); 
+											let cnpj = entry.substring( 0, 14);
+										let IE = entry.substring(28, 14);
+										let  situacao = entry.substring( 28, 29);
+										let  uf  = entry.substring( 37, 39);
+										let estado = "MS";
+										valor = parseFloat(porcentagem).toFixed(2);;
+										$('#porcentagem').attr('data-value', valor);
+										document.getElementById("porcentagem").style.width = ""+valor+"%";
+										console.log("valor é: "+valor); 
+										document.getElementById("barraprocesso").value = valor;
+										porcentagem = porcentagem+oneporcent;
+										contador = contador + contador;
+										enviarform(cnpj , IE, situacao,uf,estado);
+										
+										 }, 500);
+									
+										 
+																  });
+									//document.getElementById('fileContent').textContent =  space;
+								}
+
+		</script>
+		<body onload="init()">
+	
+
+		<!--Formulário com PHP para fazer upload de arquivo com PHP-->
+		<form method="POST" action="/empresas/cci" id="myform" enctype="multipart/form-data">
+			<label>Arquivo</label>
+			<!--Campo para fazer o upload do arquivo com PHP-->
+			<input  id="fileInput" type="file" name="file"><br><br>
+					
+			<input type="button"  value="Importar" >
+				<div  style="width: 350px;margin-left: 35px;">	
+						<p style="width:1%;margin-left: 15px;" id="porcentagem" data-value="0">&nbsp;</p>
+						<progress id="barraprocesso"  max="100" value="0" class="html5">
+				</div>
+			<div id="fileContent"></div>
+			<div id="resultado">
+			</div>
+		</form>
